@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+class Main
+  def run
+    Input.all.inject{ |sum, n| sum + n }
+  end
+end
+
+class Input
+  def self.all
+    File.read(File.join(File.dirname(__FILE__), "input.txt")).split("\n").map{|n| Integer(n)}
+  end
+end
+
+puts Main.new.run

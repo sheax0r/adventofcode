@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+require 'set'
+class Calculator
+
+  attr_accessor :frequency, :has_duplicate
+
+  def initialize(frequency)
+    @frequency =  frequency
+    @has_duplicate = false
+  end
+
+  def run(input, set)
+    input.each do |n|
+      self.frequency = self.frequency + n
+      if set.include?(frequency)
+        self.has_duplicate = true
+        return frequency
+      end
+      set << frequency
+    end
+    frequency
+  end
+end
+
+class Input
+  def self.all
+    File.read(File.join(File.dirname(__FILE__), "input.txt")).split("\n").map{|n| Integer(n)}
+  end
+end
+
+
+class Main
+  def self.run
+    set = Set.new([0])
+    input = Input.all
+    frequency = 0
+
+    while(true)
+      c = Calculator.new(frequency)
+      frequency = c.run(input, set)
+      if c.has_duplicate
+        return frequency
+      end
+    end
+  end
+end
+
+puts Main.run
+
+
